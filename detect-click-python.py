@@ -12,10 +12,13 @@ if not os.path.exists(pasta):
 camera = cv2.VideoCapture(0)
 
 def capturar_imagem():
+    capturar_imagem.valor += 1 
     ret, imagem = camera.read()
-    img = os.path.join(pasta, "foto_capturada.png")
+    img = os.path.join(pasta, f"foto_capturada{capturar_imagem.valor}.png")
     cv2.imwrite(img, imagem)
     print("Imagem capturada e salva em:", img)
+
+capturar_imagem.valor = 0
 
 def on_click(x, y, button, pressed):
     if pressed:
